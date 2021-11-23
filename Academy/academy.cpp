@@ -47,12 +47,16 @@ public:
 		cout << "H_Destructor:\t" << this << endl;
 	}
 	//                METHODS:
-	virtual void print()const
+	virtual ostream& print(ostream& os)const
 	{
-		cout << last_name << " " << first_name << " " << age << " лет.\n";
+		return os << last_name << " " << first_name << " " << age << " лет.";
 	}
-};
 
+};
+ostream& operator<<(ostream& os, const Human& obj)
+{
+	return obj.print(os);
+}
 class Student :public Human
 {
 	string speciality;
@@ -101,12 +105,12 @@ public:
 	}
 
 	//                 METHODS:
-	void print()const
+	ostream& print(ostream& os)const
 	{
-		Human::print();
-		cout << "Специальность: " << speciality
+		Human::print(os);
+		return os << "Специальность: " << speciality
 			<< ", группа: " << group
-			<< "успеваемость: " << rating << endl;
+			<< ", успеваемость: " << rating;
 	}
 };
 class Teacher :public Human
@@ -147,10 +151,10 @@ public:
 	{
 		cout << "T_Destructor:\t" << this << endl;
 	}
-	void print()const
+	ostream& print(ostream& os)const
 	{
-		Human::print();
-		cout << "Speciality: " << speciality << ", Experience: " << experience << " age" << endl;
+		Human::print(os);
+		return os << "Speciality: " << speciality << ", Experience: " << experience << " age";
 	}
 };
 class Graduate :public Student
@@ -180,10 +184,10 @@ public:
 	{
 		cout << "G_Destructor:\t" << this << endl;
 	}
-	void print()const
+	ostream& print(ostream& os)const
 	{
-		Student::print();
-		cout << "Theme of the diploma: " << subject << endl;
+		Student::print(os);
+		return os << "Theme of the diploma: " << subject;
 	}
 
 };
@@ -225,7 +229,8 @@ void main()
 	for (int i = 0; i < sizeof(group) / sizeof(Human*); i++)
 	{
 		cout << "\n----------------------------------------\n";
-		group[i]->print();
+		//group[i]->print();
+		cout << *group[i] << endl;
 	}
 	cout << "\n----------------------------------------\n";
 
