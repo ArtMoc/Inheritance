@@ -1,7 +1,7 @@
+
 #include <iostream>
 #include <string>
 using namespace std;
-
 class Human
 {
 	string last_name;
@@ -151,7 +151,6 @@ public:
 		cout << "Speciality: " << speciality << ", Experience: " << experience << " age" << endl;
 	}
 };
-
 class Graduate :public Student
 {
 	string subject;
