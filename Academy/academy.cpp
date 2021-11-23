@@ -184,6 +184,7 @@ public:
 		Student::print();
 		cout << "Theme of the diploma: " << subject << endl;
 	}
+
 };
 
 //#define INHERITANCE
