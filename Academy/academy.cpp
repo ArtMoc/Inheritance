@@ -97,6 +97,7 @@ public:
 	{
 		cout << "S_Destructor:\t" << this << endl;
 	}
+
 	//                 METHODS:
 	void print()const
 	{
@@ -105,6 +106,46 @@ public:
 			<< ", группа: " << group
 			<< "успеваемость: " << rating << endl;
 	}
+};
+class Teacher :public Human
+{
+	string speciality;
+	unsigned int experience;
+public:
+	const string& get_speciality()const
+	{
+		return speciality;
+	}
+	unsigned int get_experience()const
+	{
+		return experience;
+	}
+	void set_speciality(const string& speciality)
+	{
+		this->speciality = speciality;
+	}
+	void set_experience(unsigned int experience)
+	{
+		this->experience = experience;
+	}
+
+
+	//                  CONSTRUCTORS:
+	Teacher
+	(
+		const string& last_name, const string& first_name, unsigned int age,
+		const string& speciality, unsigned int experience
+	) :Human(last_name, first_name, age)
+	{
+		set_speciality(speciality);
+		set_experience(experience);
+		cout << "T_Constructor:\t" << this << endl;
+	}
+	~Teacher()
+	{
+		cout << "T_Destructor:\t" << this << endl;
+	}
+		
 };
 
 void main()
