@@ -1,8 +1,9 @@
 
 #include <iostream>
-#include <string>
 #include <fstream>
+#include <string>
 using namespace std;
+#define tab "\t"
 
 class Human
 {
@@ -49,7 +50,7 @@ public:
 	//                METHODS:
 	virtual ostream& print(ostream& os)const
 	{
-		return os << last_name << " " << first_name << " " << age << " лет.";
+		return os << last_name << " " << first_name << " " << age << " лет. ";
 	}
 
 };
@@ -233,6 +234,14 @@ void main()
 		cout << *group[i] << endl;
 	}
 	cout << "\n----------------------------------------\n";
+
+	ofstream fout("Group.txt");
+	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
+	{
+		fout << *group[i] << endl;
+	}
+	fout.close();
+	system("notepad Group.txt");
 
 	for (int i = 0; i < sizeof(group) / sizeof(Human*); i++)
 	{
