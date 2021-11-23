@@ -144,8 +144,46 @@ public:
 	~Teacher()
 	{
 		cout << "T_Destructor:\t" << this << endl;
+	}	
+	void print()const
+	{
+		Human::print();
+		cout << "Speciality: " << speciality << ", Experience: " << experience << " age" << endl;
 	}
-		
+};
+
+class Graduate :public Student
+{
+	string subject;
+public:
+	const string& get_subject()const
+	{
+		return subject;
+	}
+	void set_subject(const string& subject)
+	{
+		this->subject = subject;
+	}
+	//                CONSTRUCTORS:
+	Graduate
+	(
+		const string& last_name, const string& first_name, unsigned int age,
+		const string& speciality, const string& group, double rating,
+		const string& subject
+	) :Student(last_name, first_name, age, speciality, group, rating)
+	{
+		set_subject(subject);
+		cout << "G_Constructor:\t" << this << endl;
+	}
+	~Graduate()
+	{
+		cout << "G_Destructor:\t" << this << endl;
+	}
+	void print()const
+	{
+		Student::print();
+		cout << "Theme of the diploma: " << subject << endl;
+	}
 };
 
 void main()
@@ -156,4 +194,12 @@ void main()
 
 	Student s("Pinkman", "Jessie", 22, "Methamphitamine manufacturing", "WW_01 ", 93);
 	s.print();
+
+	Teacher t("White", "Walter", 50, "Chemistry", 25);
+	t.print();
+
+	Graduate g("Schrader", "Hank", 42,
+		"Cryminalistic", "OBN", 95,
+		"How to catch Heisenberg");
+	g.print();
 }
