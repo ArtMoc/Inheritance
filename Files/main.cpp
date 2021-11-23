@@ -2,7 +2,7 @@
 #include <fstream>
 using namespace std;
 
-#define WRITE_TO_FILE
+//#define WRITE_TO_FILE
 //#define READ_FROM_FILE
 
 void main()

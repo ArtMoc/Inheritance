@@ -1,7 +1,9 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
+
 class Human
 {
 	string last_name;
@@ -48,6 +50,12 @@ public:
 	virtual void print()const
 	{
 		cout << last_name << " " << first_name << " " << age << " лет.\n";
+	}
+	void write()const
+	{
+		ofstream fout("Academy1.txt", std::ios_base::app);
+		fout << last_name << " " << first_name << " " << age << " лет.\n";
+		fout.close();
 	}
 };
 
