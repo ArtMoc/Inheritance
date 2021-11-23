@@ -3,7 +3,6 @@
 #include "Teacher.h"
 #include "Graduate.h"
 
-
 //#define INHERITANCE
 
 void main()
