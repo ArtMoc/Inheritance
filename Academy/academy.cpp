@@ -45,7 +45,7 @@ public:
 		cout << "H_Destructor:\t" << this << endl;
 	}
 	//                METHODS:
-	void print()const
+	virtual void print()const
 	{
 		cout << last_name << " " << first_name << " " << age << " лет.\n";
 	}
