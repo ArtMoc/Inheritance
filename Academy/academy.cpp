@@ -40,11 +40,15 @@ public:
 		set_last_name(last_name);
 		set_first_name(first_name);
 		set_age(age);
+#ifdef DEBUG
 		cout << "H_Constructor:\t" << this << endl;
+#endif // DEBUG
 	}
 	virtual ~Human()
 	{
+#ifdef DEBUG
 		cout << "H_Destructor:\t" << this << endl;
+#endif // DEBUG
 	}
 	//                METHODS:
 	virtual void print()const
@@ -52,6 +56,14 @@ public:
 		cout << last_name << " " << first_name << " " << age << " лет.\n";
 	}
 };
+
+ostream& operator<<(ostream& os, const Human& obj)
+{
+	return os
+		<< obj.get_last_name() << " " 
+		<< obj.get_first_name() << " "
+		<< obj.get_age() << " лет.";
+}
 
 class Student:public Human
 {
@@ -93,11 +105,16 @@ public:
 		set_speciality(speciality);
 		set_group(group);
 		set_rating(rating);
+#ifdef DEBUG
 		cout << "S_Constructor:\t" << this << endl;
+#endif // DEBUG
 	}
 	~Student()
 	{
+#ifdef DEBUG
 		cout << "S_Destructor:\t" << this << endl;
+#endif // DEBUG
+
 	}
 
 	//                 METHODS:
@@ -109,6 +126,16 @@ public:
 			<< "успеваемость: " << rating << endl;
 	}
 };
+
+ostream& operator<<(ostream& os, const Student& obj)
+{
+	os << (Human)obj;
+	return os
+		<< " , спец:" << obj.get_speciality()
+		<< ", группа:" << obj.get_group()
+		<< ", успеваемость:" << obj.get_rating();
+}
+
 class Teacher :public Human
 {
 	string speciality;
@@ -141,11 +168,17 @@ public:
 	{
 		set_speciality(speciality);
 		set_experience(experience);
+#ifdef DEBUG
 		cout << "T_Constructor:\t" << this << endl;
+#endif // DEBUG
+
 	}
 	~Teacher()
 	{
+#ifdef DEBUG
 		cout << "T_Destructor:\t" << this << endl;
+#endif // DEBUG
+
 	}	
 	void print()const
 	{
@@ -153,6 +186,15 @@ public:
 		cout << "Speciality: " << speciality << ", Experience: " << experience << " age" << endl;
 	}
 };
+
+ostream& operator<<(ostream& os, const Teacher& obj)
+{
+	os << (Human)obj;
+	return os
+		<< ", спец:" << obj.get_speciality()
+		<< ", опыт преподавани€: " << obj.get_experience() << " лет.";
+}
+
 class Graduate :public Student
 {
 	string subject;
@@ -174,11 +216,17 @@ public:
 	) :Student(last_name, first_name, age, speciality, group, rating)
 	{
 		set_subject(subject);
+#ifdef DEBUG
 		cout << "G_Constructor:\t" << this << endl;
+#endif // DEBUG
+
 	}
 	~Graduate()
 	{
+#ifdef DEBUG
 		cout << "G_Destructor:\t" << this << endl;
+#endif // DEBUG
+
 	}
 	void print()const
 	{
@@ -187,6 +235,13 @@ public:
 	}
 
 };
+
+ostream& operator<<(ostream& os, const Graduate& obj)
+{
+	
+	return os << (Student)obj << "“ема: " << obj.get_subject();
+}
+
 
 //#define INHERITANCE
 
@@ -225,7 +280,11 @@ void main()
 	for (int i = 0; i < sizeof(group) / sizeof(Human*); i++)
 	{
 		cout << "\n----------------------------------------\n";
-		group[i]->print();
+		//group[i]->print();
+		//cout << typeid(*group[i]).name() << endl;
+		if (typeid(*group[i]) == typeid(Student)) cout << *dynamic_cast<Student*>(group[i]) << endl;
+		if (typeid(*group[i]) == typeid(Graduate)) cout << *dynamic_cast<Graduate*>(group[i]) << endl;
+		if (typeid(*group[i]) == typeid(Teacher)) cout << *dynamic_cast<Teacher*>(group[i]) << endl;
 	}
 	cout << "\n----------------------------------------\n";
 
