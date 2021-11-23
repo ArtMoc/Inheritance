@@ -1,7 +1,9 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
+
 class Human
 {
 	string last_name;
@@ -51,7 +53,7 @@ public:
 	}
 };
 
-class Student:public Human
+class Student :public Human
 {
 	string speciality;
 	string group;
@@ -86,7 +88,7 @@ public:
 	(
 		const string& last_name, const string& first_name, unsigned int age,
 		const string& speciality, const string& group, double rating
-	):Human(last_name, first_name, age)//Делегируем конструктор базового класса
+	) :Human(last_name, first_name, age)//Делегируем конструктор базового класса
 	{
 		set_speciality(speciality);
 		set_group(group);
@@ -102,7 +104,7 @@ public:
 	void print()const
 	{
 		Human::print();
-		cout << "Специальность: " << speciality 
+		cout << "Специальность: " << speciality
 			<< ", группа: " << group
 			<< "успеваемость: " << rating << endl;
 	}
@@ -144,7 +146,7 @@ public:
 	~Teacher()
 	{
 		cout << "T_Destructor:\t" << this << endl;
-	}	
+	}
 	void print()const
 	{
 		Human::print();
