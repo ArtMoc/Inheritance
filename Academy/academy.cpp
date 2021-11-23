@@ -51,12 +51,6 @@ public:
 	{
 		cout << last_name << " " << first_name << " " << age << " лет.\n";
 	}
-	void write()const
-	{
-		ofstream fout("Academy1.txt", std::ios_base::app);
-		fout << last_name << " " << first_name << " " << age << " лет.\n";
-		fout.close();
-	}
 };
 
 class Student:public Human
