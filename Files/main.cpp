@@ -2,7 +2,8 @@
 #include <fstream>
 using namespace std;
 
-//#define WRITE_TO_FILE
+#define WRITE_TO_FILE
+//#define READ_FROM_FILE
 
 void main()
 {
@@ -15,6 +16,7 @@ void main()
 	system("notepad File.txt");
 #endif // WRITE_TO_FILE
 
+#ifdef READ_FROM_FILE
 	const int SIZE = 256;
 	char buffer[SIZE] = {};
 	ifstream fin("File.txt");
@@ -32,4 +34,6 @@ void main()
 		cerr << "File not founf" << endl;
 	}
 	fin.close();
+#endif // READ_FROM_FILE
+
 }
