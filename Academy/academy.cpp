@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <iomanip>
 using namespace std;
 #define tab "\t"
 
@@ -50,7 +51,12 @@ public:
 	//                METHODS:
 	virtual ostream& print(ostream& os)const
 	{
-		return os << last_name << " " << first_name << " " << age << " лет. ";
+		return os
+			<< left << setw(12) << last_name
+			<< left << setw(3) << "|"
+			<< left << setw(12) << first_name
+			<< left << setw(3) << "|"
+			<< left << setw(5) << age << " лет\t| "; ///???????????
 	}
 
 };
@@ -109,19 +115,27 @@ public:
 	ostream& print(ostream& os)const
 	{
 		Human::print(os);
-		return os << "Специальность: " << speciality
-			<< ", группа: " << group
-			<< ", успеваемость: " << rating;
+		return os
+			<< left << setw(12) << speciality
+			<< left << setw(5) << "|"
+			<< left << setw(10) << group
+			<< left << setw(5) << "|"
+			<< left << setw(5) << rating;
 	}
 };
 class Teacher :public Human
 {
 	string speciality;
+	string group;
 	unsigned int experience;
 public:
 	const string& get_speciality()const
 	{
 		return speciality;
+	}
+	const string& get_group()const
+	{
+		return group;
 	}
 	unsigned int get_experience()const
 	{
@@ -130,6 +144,10 @@ public:
 	void set_speciality(const string& speciality)
 	{
 		this->speciality = speciality;
+	}
+	void set_group(const string& group)
+	{
+		this->group = group;
 	}
 	void set_experience(unsigned int experience)
 	{
@@ -141,10 +159,11 @@ public:
 	Teacher
 	(
 		const string& last_name, const string& first_name, unsigned int age,
-		const string& speciality, unsigned int experience
+		const string& speciality, const string& group, unsigned int experience
 	) :Human(last_name, first_name, age)
 	{
 		set_speciality(speciality);
+		set_group(group);
 		set_experience(experience);
 		cout << "T_Constructor:\t" << this << endl;
 	}
@@ -155,7 +174,13 @@ public:
 	ostream& print(ostream& os)const
 	{
 		Human::print(os);
-		return os << "Специальность: " << speciality << ", Опыт: " << experience << " лет.";
+		
+		return os
+			<< left << setw(12) << speciality
+			<< left << setw(5) << "|"
+			<< left << setw(10) << group
+			<< left << setw(5) << "|"
+			<< left << setw(5) << experience;
 	}
 };
 class Graduate :public Student
@@ -188,7 +213,7 @@ public:
 	ostream& print(ostream& os)const
 	{
 		Student::print(os);
-		return os << "Theme of the diploma: " << subject;
+		return os << left << setw(5) << "|" << "Theme of the diploma: " << subject;
 	}
 
 };
@@ -221,10 +246,10 @@ void main()
 		new Student("Pinkman", "Jessie", 22, "Chemistry", "WW_01", 93),//upcast
 		new Student("Vercetti", "Tomas", 30, "Cryminal", "Vice", 90),//upcast
 		new Student("Diaz", "Ricardo", 55, "Weapons", "Vice", 80),
-		new Teacher("White", "Walter", 50, "Chemistry", 25),//upcast
-		new Teacher("Eistein", "Albert", 143, "Astronomy", 120),
+		new Teacher("White", "Walter", 50, "Chemistry", " ", 25),//upcast
+		new Teacher("Eistein", "Albert", 143, "Astronomy", " ", 120),
 		new Graduate("Schrader", "Hank", 42,
-		"Cryminalistic", "OBN", 95,	"How to catch Heisenberg")
+		"Cryminal", "OBN", 95,	"How to catch Heisenberg")
 	};
 	//Specialisatin
 	for (int i = 0; i < sizeof(group) / sizeof(Human*); i++)
