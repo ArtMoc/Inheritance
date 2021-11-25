@@ -1,6 +1,6 @@
-Pinkman     |  Jessie      |  22    лет	| Chemistry   |    WW_01     |    93   %    
-Vercetti    |  Tomas       |  30    лет	| Cryminal    |    Vice      |    90   %    
-Diaz        |  Ricardo     |  55    лет	| Weapons     |    Vice      |    80   %    
-White       |  Walter      |  50    лет	| Chemistry   |    ќпыт      |    25   лет
-Eistein     |  Albert      |  143   лет	| Astronomy   |    ќпыт      |    120  лет
-Schrader    |  Hank        |  42    лет	| Cryminal    |    OBN       |    95   %    |    Theme of the diploma: How to catch Heisenberg
+class Student   | Pinkman   |Jessie    |22   |Chemistry                |WW_01   |   93% |
+class Student   | Vercetti  |Tomas     |30   |Cryminal                 |Vice    |   90% |
+class Student   | Diaz      |Ricardo   |55   |Weapons                  |Vice    |   80% |
+class Teacher   | White     |Walter    |50   |Chemistry                         |    25y|
+class Teacher   | Eistein   |Albert    |143  |Astronomy                         |   120y|
+class Graduate  | Schrader  |Hank      |42   |Cryminal                 |OBN     |   95% | How to catch Heisenberg

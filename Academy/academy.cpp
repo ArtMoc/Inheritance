@@ -68,8 +68,11 @@ public:
 		os << age;
 		return os;*/
 	}
-	/*virtual ofstream& print(ofstream& os)const
+	virtual ofstream& print(ofstream& os)const
 	{
+		os.width(15);
+		os << left;
+		os << typeid(*this).name() << " | ";
 		os.width(10);
 		os << std::left;
 		os << last_name << "|";
@@ -79,7 +82,7 @@ public:
 		os.width(5);
 		os << age << "|";
 		return os;
-	}*/
+	}
 	virtual istream& input(istream& is)
 	{
 		return is >> last_name >> first_name >> age;
@@ -89,10 +92,10 @@ ostream& operator<<(ostream& os, const Human& obj)
 {
 	return obj.print(os);
 }
-/*ofstream& operator<<(ofstream& os, const Human& obj)
+ofstream& operator<<(ofstream& os, const Human& obj)
 {
 	return obj.print(os);
-}*/
+}
 istream& operator>>(istream& is, Human& obj)
 {
 	return obj.input(is);
@@ -167,6 +170,28 @@ public:
 		os<<rating << "%";
 		return os;*/
 	}
+	ofstream& print(ofstream& os)const
+	{
+		Human::print(os);
+		/*return os
+			<< left << setw(12) << speciality
+			<< left << setw(5) << "|"
+			<< left << setw(10) << group
+			<< left << setw(5) << "|"
+			<< left << setw(5) << rating << left << setw(5) << "%";*/
+		
+		os.width(25);
+		os << left;
+		os << speciality<<"|";///////SECOND METHOD OF EVEN
+		os.width(8);
+		os << left;
+		os << group << "|";
+		os.width(5);
+		os << internal;
+		os << rating;
+		os << "% |";
+		return os;
+	}
 	istream& input(istream& is)
 	{
 		Human::input(is);
@@ -235,6 +260,23 @@ public:
 			<< left << setw(5) << "|"
 			<< left << setw(5) << experience << "лет";
 	}
+	ofstream& print(ofstream& os)const
+	{
+		Human::print(os);
+
+		/*return os
+			<< left << setw(12) << speciality
+			<< left << setw(5) << "|"
+			<< left << setw(10) << group
+			<< left << setw(5) << "|"
+			<< left << setw(5) << experience << "лет";*/
+		os.width(33);
+		os << speciality << " | ";
+		os.width(5);
+		os << right;
+		os << experience << "y|";
+		return os;
+	}
 };
 class Graduate :public Student
 {
@@ -267,6 +309,12 @@ public:
 	{
 		Student::print(os);
 		return os << left << setw(5) << "|" << "Theme of the diploma: " << subject;
+	}
+	ofstream& print(ofstream& os)const
+	{
+		Student::print(os);
+		os << left << " " << subject;
+		return os;
 	}
 
 };
