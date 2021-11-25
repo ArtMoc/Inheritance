@@ -57,13 +57,48 @@ public:
 			<< left << setw(12) << first_name
 			<< left << setw(3) << "|"
 			<< left << setw(5) << age << " лет\t| "; ///???????????
-	}
 
+		/*os.width(10);
+		os << std::left;
+		os << last_name;
+		os.width(10);
+		os << std::left;////////////SECOND METHOD OF EVEN
+		os << first_name;
+		os.width(5);
+		os << age;
+		return os;*/
+	}
+	/*virtual ofstream& print(ofstream& os)const
+	{
+		os.width(10);
+		os << std::left;
+		os << last_name << "|";
+		os.width(10);
+		os << std::left;////////////SECOND METHOD OF EVEN-2
+		os << first_name << "|";
+		os.width(5);
+		os << age << "|";
+		return os;
+	}*/
+	virtual istream& input(istream& is)
+	{
+		return is >> last_name >> first_name >> age;
+	}
 };
 ostream& operator<<(ostream& os, const Human& obj)
 {
 	return obj.print(os);
 }
+/*ofstream& operator<<(ofstream& os, const Human& obj)
+{
+	return obj.print(os);
+}*/
+istream& operator>>(istream& is, Human& obj)
+{
+	return obj.input(is);
+}
+
+
 class Student :public Human
 {
 	string speciality;
@@ -120,7 +155,25 @@ public:
 			<< left << setw(5) << "|"
 			<< left << setw(10) << group
 			<< left << setw(5) << "|"
-			<< left << setw(5) << rating;
+			<< left << setw(5) << rating << left << setw(5) << "%";
+
+		/*os.width(15);
+		os << left;
+		os << speciality;///////SECOND METHOD OF EVEN
+		os.width(8);
+		os << left;
+		os << group;
+		os.width(5);
+		os<<rating << "%";
+		return os;*/
+	}
+	istream& input(istream& is)
+	{
+		Human::input(is);
+		is >> speciality;
+		is >> group;
+		is >> rating;
+		return is;
 	}
 };
 class Teacher :public Human
@@ -174,13 +227,13 @@ public:
 	ostream& print(ostream& os)const
 	{
 		Human::print(os);
-		
+
 		return os
 			<< left << setw(12) << speciality
 			<< left << setw(5) << "|"
 			<< left << setw(10) << group
 			<< left << setw(5) << "|"
-			<< left << setw(5) << experience;
+			<< left << setw(5) << experience << "лет";
 	}
 };
 class Graduate :public Student
@@ -219,6 +272,7 @@ public:
 };
 
 //#define INHERITANCE
+#define OUTPUT_CHECK
 
 void main()
 {
@@ -241,13 +295,14 @@ void main()
 
 
 	//Generalisation:
+#ifdef OUTPUT_CHECK
 	Human* group[] =
 	{
 		new Student("Pinkman", "Jessie", 22, "Chemistry", "WW_01", 93),//upcast
 		new Student("Vercetti", "Tomas", 30, "Cryminal", "Vice", 90),//upcast
 		new Student("Diaz", "Ricardo", 55, "Weapons", "Vice", 80),
-		new Teacher("White", "Walter", 50, "Chemistry", " ", 25),//upcast
-		new Teacher("Eistein", "Albert", 143, "Astronomy", " ", 120),
+		new Teacher("White", "Walter", 50, "Chemistry", "ќпыт ", 25),//upcast
+		new Teacher("Eistein", "Albert", 143, "Astronomy", "ќпыт ", 120),
 		new Graduate("Schrader", "Hank", 42,
 		"Cryminal", "OBN", 95,	"How to catch Heisenberg")
 	};
@@ -272,4 +327,15 @@ void main()
 	{
 		delete[] group[i];
 	}
+#endif // OUTPUT_CHECK
+
+	/*Human human("last_name", "first_name", 0);
+	cout << " то к нам пришел: ";
+	cin >> human;
+	cout << human << endl;*/
+
+	/*Student stud("", "", 0, "", "", 0);
+	cout << " то к нам пришел: ";
+	cin >> stud;
+	cout << stud;*/
 }
