@@ -319,8 +319,12 @@ public:
 
 };
 
+void SaveToFile(const Human* group[], const int size, const string& filename);
+Human** LoadFromFile(const std::string& filename);
+
+
 //#define INHERITANCE
-#define OUTPUT_CHECK
+//#define OUTPUT_CHECK
 
 void main()
 {
@@ -344,7 +348,7 @@ void main()
 
 	//Generalisation:
 #ifdef OUTPUT_CHECK
-	Human* group[] =
+	const Human* group[] =
 	{
 		new Student("Pinkman", "Jessie", 22, "Chemistry", "WW_01", 93),//upcast
 		new Student("Vercetti", "Tomas", 30, "Cryminal", "Vice", 90),//upcast
@@ -363,13 +367,20 @@ void main()
 	}
 	cout << "\n----------------------------------------\n";
 
-	ofstream fout("Group.txt");
+	/*ofstream fout("Group.txt");
 	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
 	{
 		fout << *group[i] << endl;
 	}
 	fout.close();
-	system("notepad Group.txt");
+	system("notepad Group.txt");*/
+	string filename = "Group.txt";
+	SaveToFile(group, sizeof(group) / sizeof(group[0]), "Group.txt");
+	system((string("notepad ")+filename).c_str()); 
+	// string("notepad ") - ÏÐÅÎÁÐÀÇÓÅÌ ÑÒÐÎÊÎÂÓÞ ÊÎÍÑÒÀÍÒÓ "notepad " Â ÎÁÚÅÊÒ ÊËÀÑÑÀ std::string
+	// string("notepad ")+filename - ÂÛÏÎËÍßÅÌ ÊÎÍÊÀÒÅÍÀÖÈÞ ÄÂÓÕ ÎÁÚÅÊÒÎÂ ÊËÀÑÑÀ std::string
+	// (std::string).c_str() - ÌÅÒÎÄ c_str() ÂÎÇÂÐÀÙÀÅÒ ÑÎÄÅÐÆÈÌÎÅ ÎÁÚÅÊÒÀ std::string 
+	//     Â ÂÈÄÅ ÎÁÛ×ÍÎÉ NULL Terminated Line  (C-String), ÒÎ ÅÑÒÜ Â ÂÈÄÅ ÌÀÑÑÈÂÀ ÝËÅÌÅÍÒÎÂ char.
 
 	for (int i = 0; i < sizeof(group) / sizeof(Human*); i++)
 	{
@@ -386,4 +397,49 @@ void main()
 	cout << "Êòî ê íàì ïðèøåë: ";
 	cin >> stud;
 	cout << stud;*/
+
+	LoadFromFile("Group.txt");
+}
+
+void SaveToFile(const Human* group[], const int size, const string& filename)
+{
+	ofstream fout(filename);
+	for (int i = 0; i < size; i++)
+	{
+		fout << *group[i] << endl;
+	}
+	fout.close();	
+}
+
+Human** LoadFromFile(const std::string& filename)
+{
+	ifstream fin(filename);
+	if (fin.is_open())
+	{
+		// 1) Âû÷èñëÿåì ðàçìåð ôàéëà
+		std::string buffer; //Â ýòîò áóôåð áóäåì ÷èòàòü ñòðîêè èç ôàéëà
+		int n = 0; // Êîëè÷åñòâî ñòðîê â ôàéëå
+		while (!fin.eof())
+		{
+			std::getline(fin, buffer);
+			n++;
+		}
+        // 2) Âûäåëÿåì ïàìÿòü ïîä ìàññèâ ãðóïïó
+		Human** group = new Human * [n] {};
+		// 3) Âîçâðàùàåì êóðñîð â íà÷àëî ôàéëà äëÿ òîãî, ÷òîáû çàíîâî åãî ïðî÷èòàòü
+		fin.clear();
+		fin.seekg(0);
+		//4) ÇÀíîâî ÷èòàåì ôàéë è çàãðóæàåì åãî ñîäåðæèìîå â ìàññèâ îáúåêòîâ
+		for (int i = 0; i < n; i++)
+		{
+			std::getline(fin, buffer);
+			cout << buffer << endl;
+		}
+		fin.close();
+	}
+	else
+	{
+		cerr << "Error: File not found!" << endl;
+	}
+	return nullptr; //Åñëè ôàéë ïðî÷èòàòü íå óäàëîñü, âîçðâàùàåì óêàçàòåëü íà 0
 }
