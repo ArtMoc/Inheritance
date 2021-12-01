@@ -274,7 +274,7 @@ public:
 		os << speciality << " | ";
 		os.width(5);
 		os << right;
-		os << experience << "y|";
+		os << experience << " | ";
 		return os;
 	}
 };

@@ -1,6 +1,6 @@
 class Student   | Pinkman   |Jessie    |22   |Chemistry                |WW_01   |   93% |
 class Student   | Vercetti  |Tomas     |30   |Cryminal                 |Vice    |   90% |
 class Student   | Diaz      |Ricardo   |55   |Weapons                  |Vice    |   80% |
-class Teacher   | White     |Walter    |50   |Chemistry                         |    25y|
-class Teacher   | Eistein   |Albert    |143  |Astronomy                         |   120y|
+class Teacher   | White     |Walter    |50   |Chemistry                         |    25 | 
+class Teacher   | Eistein   |Albert    |143  |Astronomy                         |   120 | 
 class Graduate  | Schrader  |Hank      |42   |Cryminal                 |OBN     |   95% | How to catch Heisenberg
