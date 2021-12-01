@@ -87,6 +87,15 @@ public:
 	{
 		return is >> last_name >> first_name >> age;
 	}
+	virtual ifstream& input(ifstream& is)
+	{
+		std::getline(is, last_name, '|');
+		std::getline(is, first_name, '|');
+		string age_buffer;
+		std::getline(is, age_buffer, '|');
+		this->age = std::stoi(age_buffer);//stoi - преобразует строку в число
+		return is;
+	}
 };
 ostream& operator<<(ostream& os, const Human& obj)
 {
@@ -97,6 +106,10 @@ ofstream& operator<<(ofstream& os, const Human& obj)
 	return obj.print(os);
 }
 istream& operator>>(istream& is, Human& obj)
+{
+	return obj.input(is);
+}
+ifstream& operator>>(ifstream& is, Human& obj)
 {
 	return obj.input(is);
 }
@@ -200,6 +213,16 @@ public:
 		is >> rating;
 		return is;
 	}
+	ifstream& input(ifstream& is)
+	{
+		Human::input(is);
+		std::getline(is, speciality, '|');
+		std::getline(is, group, '|');
+		string rating_buffer;
+		std::getline(is, rating_buffer, '|');
+		this->rating = std::stod(rating_buffer); // stod - преобразует string в double
+		return is;
+	}
 };
 class Teacher :public Human
 {
@@ -277,6 +300,15 @@ public:
 		os << experience << " | ";
 		return os;
 	}
+	ifstream& input(ifstream& is)
+	{
+		Human::input(is);
+		std::getline(is, speciality, '|');
+		string xp_buffer;
+		std::getline(is, xp_buffer, '|');
+		experience = std::stod(xp_buffer);
+		return is;
+	}
 };
 class Graduate :public Student
 {
@@ -316,11 +348,19 @@ public:
 		os << left << " " << subject;
 		return os;
 	}
+	ifstream& input(ifstream& is)
+	{
+		Student::input(is);
+		std::getline(is, subject);
+		return is;
+	}
 
 };
 
-void SaveToFile(const Human* group[], const int size, const string& filename);
+void SaveToFile(Human* group[], const int size, const string& filename);
+void Print(Human* group[], const int size);
 Human** LoadFromFile(const std::string& filename);
+Human* HumanFactory(const std::string& human_type);
 
 
 //#define INHERITANCE
@@ -398,10 +438,11 @@ void main()
 	cin >> stud;
 	cout << stud;*/
 
-	LoadFromFile("Group.txt");
+	Human** group = LoadFromFile("Group.txt");
+	Print(group, 6);
 }
 
-void SaveToFile(const Human* group[], const int size, const string& filename)
+void SaveToFile(Human* group[], const int size, const string& filename)
 {
 	ofstream fout(filename);
 	for (int i = 0; i < size; i++)
@@ -409,6 +450,15 @@ void SaveToFile(const Human* group[], const int size, const string& filename)
 		fout << *group[i] << endl;
 	}
 	fout.close();	
+}
+
+void Print(Human* group[], const int size)
+{
+	
+	for (int i = 0; i < size; i++)
+	{
+		cout << *group[i] << endl;
+	}	
 }
 
 Human** LoadFromFile(const std::string& filename)
@@ -430,16 +480,29 @@ Human** LoadFromFile(const std::string& filename)
 		fin.clear();
 		fin.seekg(0);
 		//4) ЗАново читаем файл и загружаем его содержимое в массив объектов
+		string human_type;
 		for (int i = 0; i < n; i++)
 		{
-			std::getline(fin, buffer);
-			cout << buffer << endl;
+			std::getline(fin, human_type, '|');
+			//cout << buffer << endl;
+			group[i] = HumanFactory(human_type);
+			fin >> *group[i];
 		}
 		fin.close();
+		return group;
 	}
 	else
 	{
 		cerr << "Error: File not found!" << endl;
 	}
 	return nullptr; //Если файл прочитать не удалось, возрващаем указатель на 0
+}
+
+Human* HumanFactory(const std::string& human_type)
+{
+	if (human_type.find ("class Student")!=string::npos)return new Student("last_name", "first_name", 0, "spec", "group", 0);
+	if (human_type.find("class Graduate")!=string::npos)return new Graduate("last_name", "first_name", 0, "spec", "group", 0, "subj");
+	if (human_type.find("class Teacher")!=string::npos)return new Teacher("last_name", "first_name", 0, "spec", "group", 0);
+	return nullptr;
+
 }
