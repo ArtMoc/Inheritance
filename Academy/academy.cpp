@@ -1,4 +1,4 @@
-
+Ôªø
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -56,7 +56,7 @@ public:
 			<< left << setw(3) << "|"
 			<< left << setw(12) << first_name
 			<< left << setw(3) << "|"
-			<< left << setw(5) << age << " ÎÂÚ\t| "; ///???????????
+			<< left << setw(5) << age << " –ª–µ—Ç\t| "; ///???????????
 
 		/*os.width(10);
 		os << std::left;
@@ -93,7 +93,7 @@ public:
 		std::getline(is, first_name, '|');
 		string age_buffer;
 		std::getline(is, age_buffer, '|');
-		this->age = std::stoi(age_buffer);//stoi - ÔÂÓ·‡ÁÛÂÚ ÒÚÓÍÛ ‚ ˜ËÒÎÓ
+		this->age = std::stoi(age_buffer);//stoi - –ø—Ä–µ–æ–±—Ä–∞–∑—É–µ—Ç —Å—Ç—Ä–æ–∫—É –≤ —á–∏—Å–ª–æ
 		return is;
 	}
 };
@@ -150,7 +150,7 @@ public:
 	(
 		const string& last_name, const string& first_name, unsigned int age,
 		const string& speciality, const string& group, double rating
-	) :Human(last_name, first_name, age)//ƒÂÎÂ„ËÛÂÏ ÍÓÌÒÚÛÍÚÓ ·‡ÁÓ‚Ó„Ó ÍÎ‡ÒÒ‡
+	) :Human(last_name, first_name, age)//–î–µ–ª–µ–≥–∏—Ä—É–µ–º –∫–æ–Ω—Å—Ç—Ä—É–∫—Ç–æ—Ä –±–∞–∑–æ–≤–æ–≥–æ –∫–ª–∞—Å—Å–∞
 	{
 		set_speciality(speciality);
 		set_group(group);
@@ -220,7 +220,7 @@ public:
 		std::getline(is, group, '|');
 		string rating_buffer;
 		std::getline(is, rating_buffer, '|');
-		this->rating = std::stod(rating_buffer); // stod - ÔÂÓ·‡ÁÛÂÚ string ‚ double
+		this->rating = std::stod(rating_buffer); // stod - –ø—Ä–µ–æ–±—Ä–∞–∑—É–µ—Ç string –≤ double
 		return is;
 	}
 };
@@ -281,7 +281,7 @@ public:
 			<< left << setw(5) << "|"
 			<< left << setw(10) << group
 			<< left << setw(5) << "|"
-			<< left << setw(5) << experience << "ÎÂÚ";
+			<< left << setw(5) << experience << "–ª–µ—Ç";
 	}
 	ofstream& print(ofstream& os)const
 	{
@@ -292,7 +292,7 @@ public:
 			<< left << setw(5) << "|"
 			<< left << setw(10) << group
 			<< left << setw(5) << "|"
-			<< left << setw(5) << experience << "ÎÂÚ";*/
+			<< left << setw(5) << experience << "–ª–µ—Ç";*/
 		os.width(33);
 		os << speciality << " | ";
 		os.width(5);
@@ -393,8 +393,8 @@ void main()
 		new Student("Pinkman", "Jessie", 22, "Chemistry", "WW_01", 93),//upcast
 		new Student("Vercetti", "Tomas", 30, "Cryminal", "Vice", 90),//upcast
 		new Student("Diaz", "Ricardo", 55, "Weapons", "Vice", 80),
-		new Teacher("White", "Walter", 50, "Chemistry", "ŒÔ˚Ú ", 25),//upcast
-		new Teacher("Eistein", "Albert", 143, "Astronomy", "ŒÔ˚Ú ", 120),
+		new Teacher("White", "Walter", 50, "Chemistry", "–û–ø—ã—Ç ", 25),//upcast
+		new Teacher("Eistein", "Albert", 143, "Astronomy", "–û–ø—ã—Ç ", 120),
 		new Graduate("Schrader", "Hank", 42,
 		"Cryminal", "OBN", 95,	"How to catch Heisenberg")
 	};
@@ -417,10 +417,10 @@ void main()
 	string filename = "Group.txt";
 	SaveToFile(group, sizeof(group) / sizeof(group[0]), "Group.txt");
 	system((string("notepad ")+filename).c_str()); 
-	// string("notepad ") - œ–≈Œ¡–¿«”≈Ã —“–Œ Œ¬”ﬁ  ŒÕ—“¿Õ“” "notepad " ¬ Œ¡⁄≈ “  À¿——¿ std::string
-	// string("notepad ")+filename - ¬€œŒÀÕﬂ≈Ã  ŒÕ ¿“≈Õ¿÷»ﬁ ƒ¬”’ Œ¡⁄≈ “Œ¬  À¿——¿ std::string
-	// (std::string).c_str() - Ã≈“Œƒ c_str() ¬Œ«¬–¿Ÿ¿≈“ —Œƒ≈–∆»ÃŒ≈ Œ¡⁄≈ “¿ std::string 
-	//     ¬ ¬»ƒ≈ Œ¡€◊ÕŒ… NULL Terminated Line  (C-String), “Œ ≈—“‹ ¬ ¬»ƒ≈ Ã¿——»¬¿ ›À≈Ã≈Õ“Œ¬ char.
+	// string("notepad ") - –ü–†–ï–û–ë–†–ê–ó–£–ï–ú –°–¢–†–û–ö–û–í–£–Æ –ö–û–ù–°–¢–ê–ù–¢–£ "notepad " –í –û–ë–™–ï–ö–¢ –ö–õ–ê–°–°–ê std::string
+	// string("notepad ")+filename - –í–´–ü–û–õ–ù–Ø–ï–ú –ö–û–ù–ö–ê–¢–ï–ù–ê–¶–ò–Æ –î–í–£–• –û–ë–™–ï–ö–¢–û–í –ö–õ–ê–°–°–ê std::string
+	// (std::string).c_str() - –ú–ï–¢–û–î c_str() –í–û–ó–í–†–ê–©–ê–ï–¢ –°–û–î–ï–†–ñ–ò–ú–û–ï –û–ë–™–ï–ö–¢–ê std::string 
+	//     –í –í–ò–î–ï –û–ë–´–ß–ù–û–ô NULL Terminated Line  (C-String), –¢–û –ï–°–¢–¨ –í –í–ò–î–ï –ú–ê–°–°–ò–í–ê –≠–õ–ï–ú–ï–ù–¢–û–í char.
 
 	for (int i = 0; i < sizeof(group) / sizeof(Human*); i++)
 	{
@@ -429,12 +429,12 @@ void main()
 #endif // OUTPUT_CHECK
 
 	/*Human human("last_name", "first_name", 0);
-	cout << " ÚÓ Í Ì‡Ï ÔË¯ÂÎ: ";
+	cout << "–ö—Ç–æ –∫ –Ω–∞–º –ø—Ä–∏—à–µ–ª: ";
 	cin >> human;
 	cout << human << endl;*/
 
 	/*Student stud("", "", 0, "", "", 0);
-	cout << " ÚÓ Í Ì‡Ï ÔË¯ÂÎ: ";
+	cout << "–ö—Ç–æ –∫ –Ω–∞–º –ø—Ä–∏—à–µ–ª: ";
 	cin >> stud;
 	cout << stud;*/
 
@@ -466,20 +466,20 @@ Human** LoadFromFile(const std::string& filename)
 	ifstream fin(filename);
 	if (fin.is_open())
 	{
-		// 1) ¬˚˜ËÒÎˇÂÏ ‡ÁÏÂ Ù‡ÈÎ‡
-		std::string buffer; //¬ ˝ÚÓÚ ·ÛÙÂ ·Û‰ÂÏ ˜ËÚ‡Ú¸ ÒÚÓÍË ËÁ Ù‡ÈÎ‡
-		int n = 0; //  ÓÎË˜ÂÒÚ‚Ó ÒÚÓÍ ‚ Ù‡ÈÎÂ
+		// 1) –í—ã—á–∏—Å–ª—è–µ–º —Ä–∞–∑–º–µ—Ä —Ñ–∞–π–ª–∞
+		std::string buffer; //–í —ç—Ç–æ—Ç –±—É—Ñ–µ—Ä –±—É–¥–µ–º —á–∏—Ç–∞—Ç—å —Å—Ç—Ä–æ–∫–∏ –∏–∑ —Ñ–∞–π–ª–∞
+		int n = 0; // –ö–æ–ª–∏—á–µ—Å—Ç–≤–æ —Å—Ç—Ä–æ–∫ –≤ —Ñ–∞–π–ª–µ
 		while (!fin.eof())
 		{
 			std::getline(fin, buffer);
 			n++;
 		}
-        // 2) ¬˚‰ÂÎˇÂÏ Ô‡ÏˇÚ¸ ÔÓ‰ Ï‡ÒÒË‚ „ÛÔÔÛ
+        // 2) –í—ã–¥–µ–ª—è–µ–º –ø–∞–º—è—Ç—å –ø–æ–¥ –º–∞—Å—Å–∏–≤ –≥—Ä—É–ø–ø—É
 		Human** group = new Human * [n] {};
-		// 3) ¬ÓÁ‚‡˘‡ÂÏ ÍÛÒÓ ‚ Ì‡˜‡ÎÓ Ù‡ÈÎ‡ ‰Îˇ ÚÓ„Ó, ˜ÚÓ·˚ Á‡ÌÓ‚Ó Â„Ó ÔÓ˜ËÚ‡Ú¸
+		// 3) –í–æ–∑–≤—Ä–∞—â–∞–µ–º –∫—É—Ä—Å–æ—Ä –≤ –Ω–∞—á–∞–ª–æ —Ñ–∞–π–ª–∞ –¥–ª—è —Ç–æ–≥–æ, —á—Ç–æ–±—ã –∑–∞–Ω–æ–≤–æ –µ–≥–æ –ø—Ä–æ—á–∏—Ç–∞—Ç—å
 		fin.clear();
 		fin.seekg(0);
-		//4) «¿ÌÓ‚Ó ˜ËÚ‡ÂÏ Ù‡ÈÎ Ë Á‡„ÛÊ‡ÂÏ Â„Ó ÒÓ‰ÂÊËÏÓÂ ‚ Ï‡ÒÒË‚ Ó·˙ÂÍÚÓ‚
+		//4) –ó–ê–Ω–æ–≤–æ —á–∏—Ç–∞–µ–º —Ñ–∞–π–ª –∏ –∑–∞–≥—Ä—É–∂–∞–µ–º –µ–≥–æ —Å–æ–¥–µ—Ä–∂–∏–º–æ–µ –≤ –º–∞—Å—Å–∏–≤ –æ–±—ä–µ–∫—Ç–æ–≤
 		string human_type;
 		for (int i = 0; i < n; i++)
 		{
@@ -490,12 +490,13 @@ Human** LoadFromFile(const std::string& filename)
 		}
 		fin.close();
 		return group;
+
 	}
 	else
 	{
 		cerr << "Error: File not found!" << endl;
 	}
-	return nullptr; //≈ÒÎË Ù‡ÈÎ ÔÓ˜ËÚ‡Ú¸ ÌÂ Û‰‡ÎÓÒ¸, ‚ÓÁ‚‡˘‡ÂÏ ÛÍ‡Á‡ÚÂÎ¸ Ì‡ 0
+	return nullptr; //–ï—Å–ª–∏ —Ñ–∞–π–ª –ø—Ä–æ—á–∏—Ç–∞—Ç—å –Ω–µ —É–¥–∞–ª–æ—Å—å, –≤–æ–∑—Ä–≤–∞—â–∞–µ–º —É–∫–∞–∑–∞—Ç–µ–ª—å –Ω–∞ 0
 }
 
 Human* HumanFactory(const std::string& human_type)
